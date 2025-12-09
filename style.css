@@ -1,0 +1,222 @@
+/* ============================
+   🎨 SYSTEM CONFIGURATION
+============================ */
+:root {
+    /* LIGHT MODE */
+    --bg-color: #f8f9fa;
+    --bg-gradient: linear-gradient(120deg, #fdfbf7 0%, #eef2f3 100%);
+    --text-main: #1a1a1a;
+    --text-desc: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #f1f5f9;
+    --primary: #6366f1;
+    --accent: #8b5cf6;
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
+    --shadow: 0 20px 40px -5px rgba(0,0,0,0.05);
+    --intro-bg: #fdfbf7;
+    --cursor-color: #4c1d95;
+    --sidebar-width: 320px;
+}
+
+/* DARK MODE */
+body.dark-mode {
+    --bg-color: #0f172a;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    --text-main: #f8fafc;
+    --text-desc: #e2e8f0;
+    --card-bg: #1e293b;
+    --card-border: rgba(255, 255, 255, 0.1);
+    --primary: #818cf8;
+    --accent: #a78bfa;
+    --sidebar-bg: rgba(15, 23, 42, 0.95);
+    --shadow: 0 20px 40px -5px rgba(0,0,0,0.5);
+    --intro-bg: #0f172a;
+    --cursor-color: #00f3ff;
+}
+
+/* TRANSITION */
+body, #intro-overlay, .holo-card, .sidebar-nav, .project-card, .discussion-box, .start-btn, .section-desc, h1, h2, h3, p, .bio-text, .theme-btn, .menu-toggle-btn {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* BASE */
+* { box-sizing: border-box; }
+body {
+    background: var(--bg-gradient); color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden; min-height: 100vh; cursor: none;
+}
+
+/* UTILS */
+h1, h2, h3 { font-family: 'Outfit', sans-serif; letter-spacing: -0.03em; }
+.code-font { font-family: 'DM Mono', monospace; font-size: 0.85rem; }
+.section-desc { color: var(--text-desc) !important; font-size: 1.1rem; margin-bottom: 0; }
+.noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); pointer-events: none; z-index: 90; opacity: 0.5; }
+
+/* ============================
+   🖱️ CUSTOM CURSOR (SYNCED)
+============================ */
+/* Kita set position fixed dan top/left 0, gerakan dikontrol JS sepenuhnya */
+.cursor-dot {
+    position: fixed; top: 0; left: 0;
+    width: 8px; height: 8px; 
+    background: var(--cursor-color); 
+    border-radius: 50%; pointer-events: none; z-index: 999999;
+    /* Centering */
+    transform: translate(-50%, -50%);
+}
+
+.cursor-circle {
+    position: fixed; top: 0; left: 0;
+    width: 40px; height: 40px; 
+    border: 1.5px solid var(--cursor-color); 
+    border-radius: 50%; pointer-events: none; z-index: 999999; opacity: 0.5;
+    /* Centering */
+    transform: translate(-50%, -50%);
+    /* Transition hanya untuk ukuran (width/height), bukan posisi */
+    transition: width 0.3s, height 0.3s;
+}
+
+body.hovering .cursor-circle { 
+    width: 70px; height: 70px; 
+    background: rgba(99, 102, 241, 0.15); 
+    border-color: var(--primary); 
+    mix-blend-mode: difference; 
+}
+
+@media (max-width: 768px) { .cursor-dot, .cursor-circle { display: none; } body { cursor: auto; } }
+
+/* THEME TOGGLE BUTTON */
+.theme-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-main); z-index: 100000; box-shadow: 0 5px 20px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
+.theme-btn:hover { transform: scale(1.1); border-color: var(--primary); }
+
+/* INTRO */
+#intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--intro-bg); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.holo-card { display: flex; width: 100%; max-width: 900px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; max-height: 90vh; animation: cardIn 1s forwards; opacity: 0; transform: translateY(30px); }
+@keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
+.holo-left { flex: 1; padding: 40px; border-right: 1px solid var(--card-border); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(125,125,125,0.05); }
+.holo-right { flex: 1.5; padding: 50px; overflow-y: auto; }
+.avatar-box { width: 140px; height: 140px; border-radius: 24px; border: 3px solid var(--card-bg); box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 20px; }
+.avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+.bio-text { color: var(--text-desc); min-height: 60px; font-size: 1.1rem; line-height: 1.6; }
+
+.start-btn { background: var(--text-main); color: var(--bg-color); border: none; padding: 18px 36px; border-radius: 12px; font-weight: 600; width: 100%; transition: 0.3s; cursor: pointer; }
+.start-btn:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+#introActions { pointer-events: none; }
+
+/* SIDEBAR SYSTEM */
+.menu-toggle-btn { position: fixed; top: 30px; right: 40px; width: 60px; height: 60px; background: var(--card-bg); color: var(--text-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 10000; cursor: pointer; transition: 0.3s; border: 1px solid var(--card-border); }
+.menu-toggle-btn:hover { transform: scale(1.1) rotate(90deg); border-color: var(--primary); color: var(--primary); }
+
+.sidebar-nav { position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh; background: var(--card-bg); z-index: 10001; padding: 40px; display: flex; flex-direction: column; transform: translateX(-100%); transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: 20px 0 50px rgba(0,0,0,0.1); border-right: 1px solid var(--card-border); }
+.sidebar-nav.active { transform: translateX(0); }
+
+.menu-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 10000; opacity: 0; pointer-events: none; transition: 0.5s; }
+.menu-backdrop.active { opacity: 1; pointer-events: auto; }
+
+.sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+.brand-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text-main); }
+.close-btn { font-size: 1.5rem; color: var(--text-desc); cursor: pointer; transition: 0.3s; }
+.close-btn:hover { color: var(--primary); transform: rotate(90deg); }
+
+.nav-list { display: flex; flex-direction: column; gap: 20px; }
+.nav-item { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-desc); text-decoration: none; transition: 0.3s; }
+.nav-item:hover { color: var(--primary); padding-left: 10px; }
+.sidebar-footer { margin-top: auto; }
+
+/* SECTIONS (SPACING LEGA) */
+.hero-section { min-height: 100vh; padding-top: 0; display: flex; align-items: center; }
+.hero-badge { padding: 8px 16px; border: 1px solid var(--card-border); border-radius: 50px; font-size: 0.8rem; background: var(--card-bg); margin-bottom: 25px; display: inline-block; color: var(--text-main); }
+.hero-title { font-size: clamp(3rem, 5vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 25px; color: var(--text-main); }
+.hero-desc { font-size: 1.2rem; color: var(--text-desc); max-width: 500px; margin-bottom: 40px; }
+
+#work { padding-top: 180px; padding-bottom: 150px; }
+#discussion { padding-top: 150px; padding-bottom: 150px; }
+#contact { padding: 80px 0; margin-top: 150px; border-top: 1px solid var(--card-border); }
+
+/* CARDS & SLIDER */
+.slider-container { width: 100%; overflow-x: auto; padding: 20px 5px; scroll-snap-type: x mandatory; display: flex; gap: 25px; cursor: grab; }
+.slider-container::-webkit-scrollbar { display: none; }
+.project-card { min-width: 350px; scroll-snap-align: center; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 20px; transition: 0.3s; box-shadow: var(--shadow); user-select: none; }
+.project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+.card-img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; pointer-events: none; }
+.card-title { color: var(--text-main); font-weight: 700; margin-top: 10px; }
+
+/* DISCUSSION */
+.discussion-box { background: var(--card-bg); padding: 50px; border-radius: 30px; border: 1px solid var(--card-border); box-shadow: var(--shadow); }
+.input-custom { width: 100%; padding: 15px; background: rgba(125,125,125,0.05); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 20px; color: var(--text-main); outline: none; transition: 0.3s; }
+.input-custom:focus { background: var(--card-bg); border-color: var(--primary); }
+
+@media (max-width: 768px) {
+    .menu-toggle-btn { top: 20px; right: 20px; width: 50px; height: 50px; }
+    .sidebar-nav { width: 85%; }
+    /* ============================
+   FIX FOOTER / KONTAK
+============================ */
+/* ============================
+   FIX FOOTER / KONTAK (ALIGNMENT SEMPURNA)
+============================ */
+/* ============================
+   FIX FOOTER (CARA PAKSA)
+============================ */
+#contact {
+    padding: 60px 0;
+    margin-top: 80px;
+    border-top: 1px solid var(--card-border);
+    position: relative;
+    z-index: 10;
+}
+
+/* 1. Reset Container Utama */
+#contact .d-flex {
+    display: flex !important;
+    align-items: center !important; /* Paksa vertikal tengah */
+    justify-content: center !important;
+    gap: 30px !important;
+    margin-bottom: 20px !important;
+    height: 50px; /* Kita kasih tinggi tetap */
+}
+
+/* 2. Reset Kotak Pembungkus Ikon (Link) */
+#contact .link-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 0 !important; /* Matikan tinggi baris teks */
+    text-decoration: none !important;
+    
+    transition: 0.3s;
+    color: var(--text-main);
+}
+
+/* 3. Reset Ikon di dalamnya */
+#contact .link-item i {
+    display: block !important;
+    font-size: 1.8rem !important; /* Ukuran kita samakan */
+    line-height: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 4. HACK: KHUSUS LINKEDIN TURUN DIKIT */
+/* Kalau masih kerasa naik, kita paksa turun 2 pixel */
+#contact .bi-linkedin {
+    position: relative;
+    top: 2px; /* Geser ke bawah 2px */
+}
+
+/* Hover Effect */
+#contact .link-item:hover {
+    transform: translateY(-5px);
+    color: var(--primary) !important;
+}
+
+/* Copyright Text */
+#contact p {
+    margin-top: 0;
+    opacity: 0.7;
+    font-weight: 500;
+}}

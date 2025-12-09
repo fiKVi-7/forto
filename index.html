@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ROFI KASYIDI | ELINS 25</title>
+
+    <link rel="icon" type="image/png" href="assets/profil.jpg”>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <button class="theme-btn hover-trigger" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+    </button>
+
+    <div class="menu-toggle-btn hover-trigger" onclick="toggleSidebar()">
+        <i class="bi bi-list" id="menuIcon"></i>
+    </div>
+
+    <div class="menu-backdrop" onclick="toggleSidebar()"></div>
+
+    <nav class="sidebar-nav">
+        <div class="sidebar-header">
+            <div class="brand-text">ROFI.DEV</div>
+            <div class="close-btn hover-trigger" onclick="toggleSidebar()">
+                <i class="bi bi-x-lg"></i>
+            </div>
+        </div>
+        
+        <div class="nav-list">
+            <a href="#hero" class="nav-item hover-trigger" onclick="toggleSidebar()">Beranda</a>
+            <a href="#work" class="nav-item hover-trigger" onclick="toggleSidebar()">Karya</a>
+            <a href="#discussion" class="nav-item hover-trigger" onclick="toggleSidebar()">Diskusi</a>
+            <a href="#contact" class="nav-item hover-trigger" onclick="toggleSidebar()">Kontak</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <p class="code-font text-muted small">© 2025 ELINS 25</p>
+        </div>
+    </nav>
+
+    <div id="intro-overlay">
+        <div class="holo-card">
+            <div class="holo-left">
+                <div class="avatar-box">
+                     <img src="assets/muka.jpg" alt="Foto Profil Rofi">
+                </div>
+                <div>
+                    <div class="fw-bold" style="font-family: var(--font-display); color: var(--text-main);">ROFI KASYIDI</div>
+                    <div class="code-font text-primary">ELINS UGM 25</div>
+                </div>
+            </div>
+            <div class="holo-right">
+                <div class="code-font fw-bold mb-2 text-primary">KENALAN YUKK!!!</div>
+                <h2 class="mb-3" style="color: var(--text-main);">HALO TEMAN TEMAN</h2>
+                
+                <div class="bio-text mb-4" id="bio-typewriter" style="min-height: 60px;"></div>
+
+                <div class="skills mb-2">
+                    <div class="d-flex justify-content-between code-font small mb-1" style="color:var(--text-main)"><span>SoftWare Progamming</span> <span>85%</span></div>
+                    <div style="height: 6px; background: rgba(125,125,125,0.1); border-radius: 10px;"><div class="bar-fill" style="width:0%; height:100%; background:var(--primary); border-radius:10px; transition:1s;" data-width="85%"></div></div>
+                </div>
+                <div class="skills mb-2">
+                    <div class="d-flex justify-content-between code-font small mb-1" style="color:var(--text-main)"><span>HardWare Progamming</span> <span>80%</span></div>
+                    <div style="height: 6px; background: rgba(125,125,125,0.1); border-radius: 10px;"><div class="bar-fill" style="width:0%; height:100%; background:var(--accent); border-radius:10px; transition:1s;" data-width="80%"></div></div>
+                </div>
+
+                <div class="mt-4" id="introActions" style="opacity: 0; transition: 0.5s;">
+                    <button class="start-btn hover-trigger" onclick="enterSite()">
+                        ENTER WORKSPACE <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <section class="hero-section" id="hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <span class="hero-badge gs-anim">FORTOFOLIO BY ROFI</span>
+                        <h1 class="hero-title gs-anim">Building Digital <br> <span style="color: var(--primary);">CONNECTIONS</span></h1>
+                        <p class="hero-desc section-desc gs-anim">Saya Mahasiswa ELINS UGM yang dapat menjembatani dunia fisik (Hardware) dengan pengalaman digital (Software).</p>
+                        <div class="d-flex gap-3 gs-anim mt-4">
+                            <a href="#work" class="btn btn-primary rounded-pill px-4 py-2 hover-trigger" style="background: var(--text-main); color: var(--bg-color); border:none;">Lihat Fortofolio Saya</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block gs-anim">
+                        <img src="assets/HomePage.jpg" style="width: 100%; border-radius: 20px; transform: rotate(2deg); box-shadow: var(--shadow);" alt="Hero">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <div class="container-fluid px-lg-5">
+                <div class="container mb-4 d-flex justify-content-between align-items-end">
+                    <div>
+                        <h2 class="fw-bold" style="color: var(--text-main);">Pengalaman Pribadi</h2>
+                        <p class="section-desc">Geser untuk melihat lebih banyak.</p>
+                    </div>
+                    <div class="code-font d-none d-md-block" style="color: var(--text-desc)"><i class="bi bi-arrow-left"></i> Geser <i class="bi bi-arrow-right"></i></div>
+                </div>
+
+                <div class="slider-container hover-trigger" id="slider">
+                    <div class="project-card">
+                        <img src="assets/forto 1.jpeg" class="card-img" alt="IOT SYSTEM">
+                        <div class="code-font mb-2" style="color:var(--primary)">IOT SYSTEM</div>
+                        <h4 class="card-title">Scoring Robot</h4>
+                        <p class="section-desc" style="font-size: 0.9rem;">Mentoring Tim Go2Steam by Gears Up</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="assets/forto 2.jpeg" class="card-img" alt="Machine Learning">
+                        <div class="code-font mb-2" style="color:var(--primary)">Machine Learning</div>
+                        <h4 class="card-title">Tracker Object Melalui Camera</h4>
+                        <p class="section-desc" style="font-size: 0.9rem;">Membuat Tracker Objek Dengan Python</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="assets/forto 3.jpeg" class="card-img" alt="Machine Learning">
+                        <div class="code-font mb-2" style="color:var(--primary)">Web Developer</div>
+                        <h4 class="card-title">Fortofolio Diri</h4>
+                        <p class="section-desc" style="font-size: 0.9rem;">Mendesain Konsep Web Menarik</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="assets/forto 4.jpeg" class="card-img" alt="Machine Learning">
+                        <div class="code-font mb-2" style="color:var(--primary)">Machine Learning</div>
+                        <h4 class="card-title">Training Computer Vision</h4>
+                        <p class="section-desc" style="font-size: 0.9rem;">Menditeksi Objek Yang Di Inginkan.</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="assets/forto 5.jpeg" class="card-img" alt="Machine Learning">
+                        <div class="code-font mb-2" style="color:var(--primary)">Hardware Progamming</div>
+                        <h4 class="card-title">Desain Konsep PID KAPAL</h4>
+                        <p class="section-desc" style="font-size: 0.9rem;">Menjaga Agar Kapal Seimbang.</p>
+                    </div>
+                    <div style="min-width: 20px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="discussion">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="discussion-box">
+                            <div class="text-center mb-5">
+                                <h2 style="color: var(--text-main);">Mari Berdiskusi</h2>
+                                <p class="section-desc">Kirimi saya pesan untuk kolaborasi atau sekadar menyapa.</p>
+                            </div>
+                            
+                            <form action="https://formspree.io/f/xkgdvzvo" method="POST" id="my-form">
+                                <div class="row">
+                                    <div class="col-md-6"><input type="text" name="nama" class="input-custom hover-trigger" placeholder="Nama Kamu" required></div>
+                                    <div class="col-md-6"><input type="email" name="email" class="input-custom hover-trigger" placeholder="Alamat Email" required></div>
+                                </div>
+                                <textarea name="pesan" class="input-custom hover-trigger" rows="4" placeholder="Pesan Anda..." required></textarea>
+                                <button id="my-form-button" class="btn btn-primary w-100 py-3 rounded-pill hover-trigger" style="background: var(--primary); border:none;">Kirim Pesan</button>
+                                <p id="my-form-status" class="text-center mt-3 code-font" style="color: var(--primary)"></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container text-center">
+                <div class="d-flex justify-content-center gap-4 mb-4">
+                    <a href="https://www.instagram.com/rofy_dk?igsh=MWxsbmY1ZW9xcnFlaQ%3D%3D&utm_source=qr" target="_blank" class="fs-4 hover-trigger" style="color: var(--text-main)"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/rofi-kasyidi-darmanto-4710a0337?utm_source=share_via&utm_content=profile&utm_medium=member_ios" style="color: var(--text-main)"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/fiKVi-7" target="_blank" class="fs-4 hover-trigger" style="color: var(--text-main)"><i class="bi bi-instagram"></i></a>
+                </div>
+                <p class="small code-font" style="color: var(--text-desc)">&copy; 2025 ROFI KASYIDI. ELINS UGM.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
